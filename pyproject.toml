@@ -1,0 +1,25 @@
+[project]
+name = "tax-chat-bot"
+version = "0.1.0"
+description = "A Chat Bot About Tax"
+authors = [
+    { name = "yuiyeong", email = "joyuiyeong@gmail.com" }
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "streamlit (>=1.49.1,<2.0.0)"
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff (>=0.12.11,<1.0.0)",
+    "pre-commit (>=4.3.0,<5.0.0)"
+]
+
+[tool.poetry]
+packages = [{ include = "tax_bot", from = "src" }]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
