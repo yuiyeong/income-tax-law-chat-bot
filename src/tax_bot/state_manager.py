@@ -11,11 +11,13 @@ class StateManager:
     class Key(str, Enum):
         MESSAGES = "messages"
         STORE = "store"
+        DOCUMENTS = "documents"
 
     def __init__(self):
         if self.Key.MESSAGES not in st.session_state:
             st.session_state[self.Key.MESSAGES] = []
             st.session_state[self.Key.STORE] = Store()
+            st.session_state[self.Key.DOCUMENTS] = []
 
     @property
     def messages(self) -> list[Message]:
@@ -24,6 +26,14 @@ class StateManager:
     @property
     def store(self) -> Store:
         return st.session_state[self.Key.STORE]
+
+    @property
+    def documents(self) -> list[Document]:
+        return st.session_state[self.Key.DOCUMENTS]
+
+    @documents.setter
+    def documents(self, documents: list[Document]) -> None:
+        st.session_state[self.Key.DOCUMENTS] = documents
 
     def add_message(self, message: Message):
         self.messages.append(message)

@@ -3,6 +3,7 @@ from enum import Enum
 import streamlit as st
 
 from tax_bot.data import Message
+from tax_bot.loader import IncomeTaxLawDocumentLoader
 from tax_bot.state_manager import StateManager
 
 
@@ -32,6 +33,12 @@ class TaxBotApp:
         st.subheader("소득세에 관련된 모든 것을 답해드립니다!")
 
         state_manager = StateManager()
+        if not state_manager.documents:
+            # 문서 먼저 loading
+            with st.spinner("소득세법 로딩중..."):
+                loader = IncomeTaxLawDocumentLoader.create_from_asset()
+                state_manager.documents = loader.load_and_split()
+                state_manager.store.add_documents(state_manager.documents)
 
         for message in state_manager.messages:
             with st.chat_message(message.role, avatar=self.avatars[message.role]):
