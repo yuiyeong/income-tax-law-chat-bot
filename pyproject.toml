@@ -1,14 +1,21 @@
 [project]
 name = "tax-chat-bot"
 version = "0.1.0"
-description = "A Chat Bot About Tax"
+description = "A Chat Bot About Korean Income Tax"
 authors = [
     { name = "yuiyeong", email = "joyuiyeong@gmail.com" }
 ]
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.12,<4.0"
 dependencies = [
-    "streamlit (>=1.49.1,<2.0.0)"
+    "streamlit (>=1.49.1,<2.0.0)",
+    "python-dotenv (>=1.1.1,<2.0.0)",
+    "langchain (==0.3.27)",
+    "langchain-core (>=0.3.27,<0.4.0)",
+    "langchain-text-splitters (>=0.3.9,<0.4.0)",
+    "langchain-community (>=0.3.27,<0.4.0)",
+    "langchain-ollama (>=0.3.6,<0.4.0)",
+    "langchain-chroma (>=0.2.5,<0.3.0)"
 ]
 
 [project.optional-dependencies]
