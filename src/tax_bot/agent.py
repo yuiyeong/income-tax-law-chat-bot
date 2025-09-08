@@ -15,4 +15,5 @@ class TaxAgent:
         self.chains = Chains(self.llm, self.retriever)
 
     def query(self, query: str) -> str:
-        return self.chains.get_tax_qna_chain().invoke(query)
+        chain = self.chains.get_dictionary_chain() | self.chains.get_tax_qna_chain()
+        return chain.invoke(query)

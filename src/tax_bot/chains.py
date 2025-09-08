@@ -24,7 +24,7 @@ class Chains:
         return dictionary_prompt | self.llm | self.str_parser
 
     def get_tax_qna_chain(self) -> RunnableSerializable:
-        qna_chain = (
+        return (
             {
                 "context": self.retriever | self._format_docs,
                 "question": RunnablePassthrough(),
@@ -33,7 +33,6 @@ class Chains:
             | self.llm
             | self.str_parser
         )
-        return self.get_dictionary_chain() | qna_chain
 
     @staticmethod
     def _format_docs(docs: list[Document]) -> str:
